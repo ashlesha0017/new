@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Fetch') {
+            steps {
+                echo 'Feching from repo'
+                git 'https://github.com/ashlesha0017/new.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building in progress'
+                bat 'javac hello.java'
+            }
+        }
+        stage('Execute') {
+            steps {
+                echo 'Executing'
+                bat 'java hello'
+            }
+        }
+    }
+}
