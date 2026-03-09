@@ -1,0 +1,24 @@
+pipeline{
+agent any 
+
+stages{
+stage('Cheackout'){
+steps{
+git 'https://github.com/ashlesha0017/new.git'
+}
+}
+stage('Publish'){
+steps{
+publishHTML([
+allowmissing:true,
+alwaysLinktoLastBuild:false,
+KeepAll:false,
+reportDir:'.',
+reportFiles:'index.html',
+reportName:'MY HTML PAGE"
+])
+
+}
+}
+}
+}
