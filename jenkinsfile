@@ -1,24 +1,23 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Fetch') {
-            steps {
-                echo 'Feching from repo'
-                git 'https://github.com/ashlesha0017/new.git'
-            }
-        }
-        stage('Build') {
-            steps {
-                echo 'Building in progress'
-                bat 'javac hello.java'
-            }
-        }
-        stage('Execute') {
-            steps {
-                echo 'Executing'
-                bat 'java hello'
-            }
-        }
+pipeline{
+  agent any
+ 
+  stages{
+    stage('Checkout'){
+      steps{
+        git 'https://github.com/rasika262626/new.git'
+      }
     }
+    stage('Publish'){
+      steps{
+        publishHTML([
+          allowmissing:true,
+          alwaysLinktoLastBuild:false,
+          KeepAll:false,
+          reportDir:'.',
+          reportFiles:'index.html',
+          reportName:'MY HTML PAGE'
+        ])
+      }
+    }
+  }
 }
